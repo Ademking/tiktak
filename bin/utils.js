@@ -2,6 +2,7 @@ import { execFile, exec } from 'child_process'
 import spawn from 'await-spawn'
 import Fuse from 'fuse.js'
 import { readFile } from 'fs/promises'
+import updateNotifier from 'update-notifier'
 
 const checkgitInstalled = () => {
   const child = execFile('git', ['--version'], (error, stdout, stderr) => {
