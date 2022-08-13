@@ -15,7 +15,7 @@ const pushGit = async () => {
     name: 'value',
     message: 'Commit Type',
     choices: [
-      { title: 'No Type', value: 'empty', description: 'No Type' }, // I need to use "empty" for no type, prompts uses the title as value if no value is provided
+      { title: 'No Emoji', value: 'empty', description: 'No Emoji' }, // I need to use "empty" for no type, prompts uses the title as value if no value is provided
       { title: '✨ feat', value: ':sparkles: feat:', description: 'A new feature' },
       { title: '🐛 fix', value: ':bug: fix:', description: 'A bug fix' },
       { title: '📝 docs', value: ':memo: docs:', description: 'Documentation only changes' },
