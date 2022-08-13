@@ -2,7 +2,7 @@
 import prompts from 'prompts'
 import isGit from 'is-git-repository'
 import newGitRepo from './new.js'
-import { checkgitInstalled, abortPrompt, runCmd, currentBranch, getLastCommitDate, getListBranches, fuzzySearcher } from './utils.js'
+import { checkgitInstalled, abortPrompt, runCmd, currentBranch, getLastCommitDate, getListBranches, fuzzySearcher, autoUpdate } from './utils.js'
 import pushGit from './push.js'
 import { diff } from './diff.js'
 import { log } from './log.js'
@@ -11,12 +11,12 @@ import { checkout } from './checkout.js'
 import { formatDistance } from 'date-fns'
 import chalk from 'chalk'
 import updateNotifier from 'update-notifier'
-import packageJson from '../package.json' assert { type: 'json' }
+
 
 ;(async () => {
   checkgitInstalled()
 
-  updateNotifier({pkg: packageJson}).notify();
+  await autoUpdate()
 
   try {
     const currentBranchName = await currentBranch()

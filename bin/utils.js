@@ -1,6 +1,7 @@
 import { execFile, exec } from 'child_process'
 import spawn from 'await-spawn'
 import Fuse from 'fuse.js'
+import { readFile } from 'fs/promises'
 
 const checkgitInstalled = () => {
   const child = execFile('git', ['--version'], (error, stdout, stderr) => {
@@ -9,6 +10,25 @@ const checkgitInstalled = () => {
       process.exit(1)
     }
   })
+}
+
+const getPackageInfo = async () => {
+  const pkg = await readFile(new URL('../package.json', import.meta.url))
+  return JSON.parse(pkg)
+}
+
+const autoUpdate = async () => {
+  const { name, version } = await getPackageInfo()
+  const option = {
+    pkg: {
+      name,
+      version
+    },
+    shouldNotifyInNpmScript: true,
+    updateCheckInterval: 0
+  }
+  const notifier = updateNotifier(option)
+  await notifier.notify()
 }
 
 const abortPrompt = state => {
@@ -83,4 +103,4 @@ const fuzzySearcher = async (choices, input) => {
   return result
 }
 
-export { checkgitInstalled, abortPrompt, runCmd, currentBranch, getLastCommitDate, getListBranches, fuzzySearcher }
+export { checkgitInstalled, abortPrompt, runCmd, currentBranch, getLastCommitDate, getListBranches, fuzzySearcher, autoUpdate }
