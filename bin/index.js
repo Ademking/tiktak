@@ -10,9 +10,6 @@ import { branch } from './branch.js'
 import { checkout } from './checkout.js'
 import { formatDistance } from 'date-fns'
 import chalk from 'chalk'
-
-
-
 ;(async () => {
   checkgitInstalled()
 
