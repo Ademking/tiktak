@@ -1,0 +1,38 @@
+{
+  "name": "tiktak",
+  "version": "1.0.1",
+  "description": "Quick and Simple Git Cli Tool",
+  "main": "./bin/index.js",
+  "preferGlobal": true,
+  "type": "module",
+  "scripts": {
+    "start": "node bin/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tiktak",
+    "git",
+    "cli",
+    "tool",
+    "github",
+    "commit",
+    "push",
+    "branch",
+    "command"
+  ],
+  "bin": {
+    "tiktak": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ademking/tiktak.git"
+  },
+  "author": "Adem Kouki",
+  "license": "MIT",
+  "dependencies": {
+    "await-spawn": "^4.0.2",
+    "is-git-repository": "^2.0.0",
+    "prompts": "^2.4.2",
+    "url": "^0.11.0"
+  }
+}
