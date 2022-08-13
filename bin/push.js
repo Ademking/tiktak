@@ -1,5 +1,5 @@
 import prompts from 'prompts'
-import { abortPrompt, runCmd } from './utils.js'
+import { abortPrompt, runCmd, currentBranch } from './utils.js'
 
 const pushGit = async () => {
   const pathSpecResp = await prompts({
@@ -43,7 +43,7 @@ const pushGit = async () => {
     type: 'text',
     name: 'value',
     message: 'Push to which branch?',
-    initial: 'main',
+    initial: await currentBranch(),
     onState: abortPrompt
   })
 
