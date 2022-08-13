@@ -10,12 +10,14 @@ import { branch } from './branch.js'
 import { checkout } from './checkout.js'
 import { formatDistance } from 'date-fns'
 import chalk from 'chalk'
+
 ;(async () => {
   checkgitInstalled()
 
-  await autoUpdate()
+  
 
   try {
+    await autoUpdate()
     const currentBranchName = await currentBranch()
     const lastCommitDate = await getLastCommitDate(currentBranchName)
     const dateDistance = formatDistance(new Date(lastCommitDate), new Date(), { addSuffix: true })

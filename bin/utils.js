@@ -3,6 +3,8 @@ import spawn from 'await-spawn'
 import Fuse from 'fuse.js'
 import { readFile } from 'fs/promises'
 import updateNotifier from 'update-notifier'
+import prompts from 'prompts'
+import chalk from 'chalk'
 
 const checkgitInstalled = () => {
   const child = execFile('git', ['--version'], (error, stdout, stderr) => {
@@ -29,7 +31,22 @@ const autoUpdate = async () => {
     updateCheckInterval: 0
   }
   const notifier = updateNotifier(option)
-  await notifier.notify()
+
+  if (notifier.update) {
+    const doYouWantToUpdate = await prompts({
+      type: 'confirm',
+      name: 'value',
+      message: `A new version of ${chalk.blue.bold(name)} is available. Do you want to update?`,
+      initial: true
+    })
+    if (doYouWantToUpdate.value) {
+      console.log(`\nUpdating ${chalk.blue.bold(name)} to version ${notifier.update.latest}...\n`)
+      await runCmd(`npm install -g ${name}@${notifier.update.latest}`)
+      console.log(`\n${chalk.blue.bold(name)} has been updated to version ${notifier.update.latest}`)
+      process.exit(0)
+      
+    }
+  }
 }
 
 const abortPrompt = state => {
