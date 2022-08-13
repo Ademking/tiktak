@@ -1,4 +1,4 @@
-# Tiktak
+# Tiktak :rocket:
 
 Quick and simple Git Cli Tool. Allows you to quickly and easily manage your git repository.
 
