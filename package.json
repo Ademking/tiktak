@@ -1,6 +1,6 @@
 {
   "name": "tiktak",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Quick and Simple Git Cli Tool",
   "main": "./bin/index.js",
   "preferGlobal": true,
